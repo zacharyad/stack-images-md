@@ -3,10 +3,14 @@ package server
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"image/png"
 	"log"
 	"net/http"
+	"os"
+	"strings"
 
+	fuzzy "github.com/lithammer/fuzzysearch/fuzzy"
 	gim "github.com/ozankasikci/go-image-merge"
 )
 
@@ -16,7 +20,7 @@ func (s *Server) RegisterRoutes() http.Handler {
 	mux.HandleFunc("/", s.HelloWorldHandler)
 
 	mux.HandleFunc("/health", s.healthHandler)
-	mux.HandleFunc("/images", s.getImages)
+	mux.HandleFunc("/images/{options}", s.getImages)
 
 	return mux
 }
@@ -44,14 +48,48 @@ func (s *Server) healthHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func (s *Server) getImages(w http.ResponseWriter, r *http.Request) {
-
+	params := r.PathValue("options")
+	optionsArr := strings.Split(params, "-")
+	fmt.Println("options from url: ", optionsArr)
 	// search database for related words, if found they with relate to a directory on server locally.
 	pathStart := "/Users/zach-engineering/Documents/Coding/tutorials/golang/projects/stack-images-md/images/"
-	//
-	grids := []*gim.Grid{
-		{ImageFilePath: pathStart + "golang.png"},
-		{ImageFilePath: pathStart + "react.png"},
+	filenames, err := os.ReadDir("./images")
+
+	if err != nil {
+		panic("Everything is buring")
 	}
+
+	words := []string{}
+
+	for _, word := range filenames {
+		words = append(words, word.Name())
+	}
+
+	grids := []*gim.Grid{}
+
+	for _, optionString := range optionsArr {
+		if optionString == "" {
+			fmt.Println("FOUND", optionString)
+			continue
+		}
+
+		stackLogo := fuzzy.Find(optionString, words)
+		newI := gim.Grid{}
+		if len(stackLogo) == 0 {
+			newI.ImageFilePath = pathStart + "404.png"
+		} else {
+			newI.ImageFilePath = pathStart + stackLogo[0]
+		}
+
+		grids = append(grids, &newI)
+	}
+
+	if len(grids) == 0 {
+		newI := gim.Grid{}
+		newI.ImageFilePath = pathStart + "404.png"
+		grids = append(grids, &newI)
+	}
+
 	rgba, err := gim.New(grids, len(grids), 1).Merge()
 
 	if err != nil {

@@ -1,49 +1,43 @@
 # Project stack-images-md
 
-One Paragraph of project description goes here
+One link to get stack logos as one image from a single get request
+
+This can be used inside a markdown image link in order to easily get stack images all in one image file
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+For markdown
 
-## MakeFile
+```markdown
+![Alt text of image](http://localhost:8080/golang)
 
-run all make commands with clean tests
-```bash
-make all build
 ```
 
-build the application
-```bash
-make build
+Browser
+
+```markdown
+http://localhost:8080/golang
+
 ```
 
-run the application
-```bash
-make run
-```
+## Valid Urls
 
-Create DB container
-```bash
-make docker-run
-```
+to get a single line of stack logos
 
-Shutdown DB container
-```bash
-make docker-down
-```
+e.g. react logo followed by golang logo
+```txt
+http://localhost:8080/react-golang
 
-live reload the application
-```bash
-make watch
 ```
+to get stack logos in defined grid layout
 
-run the test suite
-```bash
-make test
-```
+e.g. six react logos in a 2 row, 3 column grid
 
-clean up binary from the last build
-```bash
-make clean
-```
+
+```txt 
+http://localhost:8080/2x3/react-react-react-react-react-react
+
+```  
+<button onclick="navigator.clipboard.writeText('Text to copy')">Copy to Clipboard</button>
+
+

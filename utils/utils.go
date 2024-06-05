@@ -13,7 +13,7 @@ import (
 func WildCardToStringSlice(wildCard string, delim string, r *http.Request) ([]string, error) {
 	arr := strings.Split(r.PathValue(wildCard), delim)
 
-	if len(arr) == 1 {
+	if len(arr) == 1 && wildCard == "x" {
 		return nil, errors.New("wildcard slice is empty and/or issue with syntax of url")
 	}
 

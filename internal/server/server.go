@@ -2,19 +2,15 @@ package server
 
 import (
 	"fmt"
+	_ "github.com/joho/godotenv/autoload"
 	"net/http"
 	"os"
 	"strconv"
 	"time"
-
-	_ "github.com/joho/godotenv/autoload"
-
-	"stack-images-md/internal/database"
 )
 
 type Server struct {
 	port int
-	db   database.Service
 }
 
 func NewServer() *http.Server {
@@ -25,8 +21,6 @@ func NewServer() *http.Server {
 	}
 	NewServer := &Server{
 		port: port,
-
-		db: database.New(),
 	}
 
 	// Declare Server config

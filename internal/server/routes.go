@@ -2,50 +2,29 @@ package server
 
 import (
 	"bytes"
-	"encoding/json"
 	"fmt"
+	gim "github.com/ozankasikci/go-image-merge"
 	"image/png"
 	"log"
 	"net/http"
 	util "stack-images-md/utils"
 	"strconv"
-
-	gim "github.com/ozankasikci/go-image-merge"
 )
 
 func (s *Server) RegisterRoutes() http.Handler {
 	mux := http.NewServeMux()
 
-	mux.HandleFunc("/", s.HelloWorldHandler)
-	mux.HandleFunc("/health", s.healthHandler)
-	mux.HandleFunc("/{logos}", s.getImages)
-	mux.HandleFunc("/{gridRowCol}/{logos}", s.getImagesWithOpts)
+	mux.HandleFunc("/", s.handleHomepage)
+	mux.HandleFunc("/{logos}", s.handleGetImages)
+	mux.HandleFunc("/{gridRowCol}/{logos}", s.handleGetImagesWithOpts)
 	return mux
 }
 
-func (s *Server) HelloWorldHandler(w http.ResponseWriter, r *http.Request) {
-	resp := make(map[string]string)
-	resp["message"] = "Hello World"
+func (s *Server) handleHomepage(w http.ResponseWriter, r *http.Request) {
 
-	jsonResp, err := json.Marshal(resp)
-	if err != nil {
-		log.Fatalf("error handling JSON marshal. Err: %v", err)
-	}
-
-	_, _ = w.Write(jsonResp)
 }
 
-func (s *Server) healthHandler(w http.ResponseWriter, r *http.Request) {
-	jsonResp, err := json.Marshal(s.db.Health())
-
-	if err != nil {
-		log.Fatalf("error handling JSON marshal. Err: %v", err)
-	}
-
-	_, _ = w.Write(jsonResp)
-}
-
-func (s *Server) getImages(w http.ResponseWriter, r *http.Request) {
+func (s *Server) handleGetImages(w http.ResponseWriter, r *http.Request) {
 	optsArr, errGettingOpts := util.WildCardToStringSlice("logos", "-", r)
 
 	if errGettingOpts != nil {
@@ -77,7 +56,7 @@ func (s *Server) getImages(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func (s *Server) getImagesWithOpts(w http.ResponseWriter, r *http.Request) {
+func (s *Server) handleGetImagesWithOpts(w http.ResponseWriter, r *http.Request) {
 	optsArr, errOpts := util.WildCardToStringSlice("logos", "-", r)
 	gridRowCol, errRowCol := util.WildCardToStringSlice("gridRowCol", "x", r)
 

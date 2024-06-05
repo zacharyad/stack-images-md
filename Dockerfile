@@ -1,0 +1,11 @@
+# testing for deployment
+
+FROM golang:1.22 as build
+WORKDIR /app
+COPY . .
+RUN build -o main cmd/api/main.go
+
+FROM scratch
+COPY --from=build /stack-images-md /stack-images-md
+EXPOSE 8000
+CMD ["/stack-images-md"]

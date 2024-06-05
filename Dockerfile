@@ -1,9 +1,9 @@
 # testing for deployment
 
 FROM golang:1.22 as build
-WORKDIR /app
+WORKDIR /cmd/api
 COPY . .
-RUN build -o main cmd/api/main.go
+RUN make build && make run
 
 FROM scratch
 COPY --from=build /stack-images-md /stack-images-md

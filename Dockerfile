@@ -1,7 +1,7 @@
 # testing for deployment
 
 FROM golang:1.22 as build
-WORKDIR /cmd/api
+WORKDIR /
 COPY . .
 RUN make build && make run
 

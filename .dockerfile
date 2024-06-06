@@ -1,4 +1,0 @@
-Dockerfile
-venv/ 
-**.*.go
-.env

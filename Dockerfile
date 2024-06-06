@@ -1,12 +1,15 @@
-# testing for deployment
+FROM golang:1.22.1-alpine
 
-FROM golang:1.22.1 as build
 WORKDIR /
-ADD . .
-RUN make build
-RUN make run
+RUN apk add make
 
-FROM scratch
-COPY --from=build /stack-images-md /stack-images-md
-EXPOSE 3000
-CMD ["/main"]
+COPY go.mod ./
+RUN go mod download
+
+COPY . ./
+
+RUN make build
+
+EXPOSE 8080
+
+CMD [ "/main" ]

@@ -87,7 +87,7 @@ func (s *Server) handleGetImagesWithOpts(w http.ResponseWriter, r *http.Request)
 
 	}
 
-	image, err := gim.New(grids, cols, rows).Merge()
+	image, err := gim.New(grids, cols, rows, gim.OptGridSize(512*len(optsArr), 512)).Merge()
 
 	if err != nil {
 		log.Fatalf("error Creating grid image. Err: %v", err)

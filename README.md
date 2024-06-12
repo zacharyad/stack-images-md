@@ -1,18 +1,31 @@
 # Project stack-images-md
 
-One link to get tech-stack logos as one image from a single get request.
+One Link to Fetch Tech-Stack Logos in a Single GET Request
 
-This can be used inside a markdown image link in order to easily get stack images all in one image file through a single get request. 
+## Overview
 
-Simply follow the url with a hyphen seperated list of techstack names and a line of logos will be sent back. The addition to fuzzy finding of the logos means that any close spelling to the desired techstack will still general the proper logo, e.g. "rect" will still get you the "react" logo. Don't sweat the typos, but if the typos are too far off, or just happens to not be found by the fuzzy search logic then you will get a "404" image spliced into the returned images.
+Stack-Images-MD is a self-hosted solution, coded in Go, that enables users to easily obtain a composite image of tech-stack logos through a single GET request. This service is SSL-certified, ensuring security usage. Ideal for enhancing markdown documentation, Stack-Images-MD simplifies the process of displaying a series of technology logos with minimal effort.
 
-## Current Custimizations:
+## Features
 
- - Using the endpoint to preface the stack names with a "row x col" (4x2) creating a grid formation you specify in the qrid endpoint. (see below)
+### Current Customizations
 
-## Future Custimizations:
+- **Grid Formation**: Specify a grid layout by prefixing the stack names with a "row x col" (e.g., 4x2). This creates a customizable grid of logos (usage show below)
 
- - Additional customization to make the logos sepia or black&white, as well as ability to change background color and playing additional images on stop of stack logos <em>(an example would by to allow a box on each logo that can by checked of not in order to say the stack you know but only checke the stack you are using in a given project)</em>
+### Future Customizations
+
+- **Image Filters**: Options to render logos in sepia or black & white.
+- **Background Customization**: Ability to change the background color of the logo images.
+- **Overlay Additional Images**: For example, a checkbox overlay on each logo to indicate familiarity or usage in a specific project.
+- - **Caching and Stack names**: Less server load with caching and ability to type a common tech stack to get a prebuild image of all logos of that give tech stack
+
+## Self-Hosting and Security
+
+Stack-Images-MD is self-hosted with custom domain (stackimages.xyz). The platform is SSL-certified, ensuring secure communication over custom domains. By leveraging Go's performance and reliability, Stack-Images-MD delivers a robust and efficient solution for tech-stack logo delivery through http.
+
+## Getting Started
+
+To integrate Stack-Images-MD into your markdown documentation or access it via a browser, follow the instructions below.
 
 
 ## Getting Started
@@ -55,3 +68,7 @@ https://stackimages.xyz/2x3/linux-linux-linux-linux-linux-linux
 ```  
 #### Grid Output:
 ![six linux logos in a 2 by 3 grid](https://stackimages.xyz/3x2/linux-linux-linux-linux-linux-linux)
+
+## Conclusion
+
+Stack-Images-MD provides a seamless way to incorporate a line or grid of tech-stack logos into your markdown documentation or web pages. Show off any projects tech stack logos with ease and professionalism using Stack-Images-MD.

@@ -55,4 +55,3 @@ https://stackimages.xyz/2x3/linux-linux-linux-linux-linux-linux
 ```  
 #### Grid Output:
 ![six linux logos in a 2 by 3 grid](https://stackimages.xyz/2x3/linux-linux-linux-linux-linux-linux)
-

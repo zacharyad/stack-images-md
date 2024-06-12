@@ -27,7 +27,7 @@ For markdown
 Browser
 
 ```markdown
-http://localhost:8080/golang-react
+http://localhost:8080/golang-linux
 
 ```
 
@@ -37,12 +37,12 @@ http://localhost:8080/golang-react
 
 <em>e.g. below react logo followed by golang logo</em>
 ```txt
-http://localhost:8080/react-golang
+http://localhost:8080/golang-linux
 
 ```
 
 #### Single Line Output:
-![Alt image text for tech stack logos](http://s8wwggk.5.161.48.105.sslip.io/golang-react)
+![Alt image text for tech stack logos](https://stackimages.xyz/golang-linux)
 
 ### To get stack logos in defined grid layout
 
@@ -50,9 +50,9 @@ e.g. six react logos in a 2 row, 3 column grid
 
 
 ```txt 
-http://localhost:8080/2x3/react-react-react-react-react-react
+https://stackimages.xyz/2x3/linux-linux-linux-linux-linux-linux
 
 ```  
 #### Grid Output:
-![Alt image text for tech stack logos](http://s8wwggk.5.161.48.105.sslip.io/2x3/react-react-react-react-react-react)
+![six linux logos in a 2 by 3 grid](https://stackimages.xyz/2x3/linux-linux-linux-linux-linux-linux)
 

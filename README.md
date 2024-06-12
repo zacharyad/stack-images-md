@@ -46,7 +46,7 @@ http://localhost:8080/golang-linux
 
 ### To get stack logos in defined grid layout
 
-e.g. six react logos in a 2 row, 3 column grid
+e.g. six linux logos in a 3 row, 2 column grid
 
 
 ```txt 
@@ -54,4 +54,4 @@ https://stackimages.xyz/2x3/linux-linux-linux-linux-linux-linux
 
 ```  
 #### Grid Output:
-![six linux logos in a 2 by 3 grid](https://stackimages.xyz/2x3/linux-linux-linux-linux-linux-linux)
+![six linux logos in a 2 by 3 grid](https://stackimages.xyz/3x2/linux-linux-linux-linux-linux-linux)

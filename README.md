@@ -20,14 +20,14 @@ Simply follow the url with a hyphen seperated list of techstack names and a line
 For markdown
 
 ```markdown
-![Alt image text for tech stack logos](http://s8wwggk.5.161.48.105.sslip.io/react-go/golang-react)
+![Alt image text for tech stack logos](http://stackimages.xyz/linux-golang-javascript)
 
 ```
 
 Browser
 
 ```markdown
-http://localhost:8080/golang-linux
+http://stackimages.xyz/linux-golang-javascript
 
 ```
 
@@ -35,14 +35,14 @@ http://localhost:8080/golang-linux
 
 ### To get a single line of stack logos
 
-<em>e.g. below react logo followed by golang logo</em>
+<em>e.g. below linux, golang, and javascipt logo in a row</em>
 ```txt
-http://localhost:8080/golang-linux
+http://stackimages.xyz/linux-golang-javascript
 
 ```
 
 #### Single Line Output:
-![Alt image text for tech stack logos](https://stackimages.xyz/golang-linux)
+![Alt image text for tech stack logos](https://stackimages.xyz/golang-linux-javascript)
 
 ### To get stack logos in defined grid layout
 

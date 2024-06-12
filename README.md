@@ -20,7 +20,7 @@ Simply follow the url with a hyphen seperated list of techstack names and a line
 For markdown
 
 ```markdown
-![Alt image text for tech stack logos](http://localhost:8080/golang-react)
+![Alt image text for tech stack logos](http://s8wwggk.5.161.48.105.sslip.io/react-go/golang-react)
 
 ```
 
@@ -42,7 +42,7 @@ http://localhost:8080/react-golang
 ```
 
 #### Single Line Output:
-![Alt image text for tech stack logos](http://localhost:8080/golang-react)
+![Alt image text for tech stack logos](http://s8wwggk.5.161.48.105.sslip.io/golang-react)
 
 ### To get stack logos in defined grid layout
 
@@ -54,5 +54,5 @@ http://localhost:8080/2x3/react-react-react-react-react-react
 
 ```  
 #### Grid Output:
-![Alt image text for tech stack logos](http://localhost:8080/2x3/react-react-react-react-react-react)
+![Alt image text for tech stack logos](http://s8wwggk.5.161.48.105.sslip.io/2x3/react-react-react-react-react-react)
 

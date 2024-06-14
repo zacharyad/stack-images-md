@@ -2,26 +2,56 @@ package server
 
 import (
 	"bytes"
+	"encoding/json"
 	"fmt"
 	gim "github.com/ozankasikci/go-image-merge"
 	"image/png"
 	"log"
 	"net/http"
+	"os"
+	"path/filepath"
 	util "stack-images-md/utils"
 	"strconv"
+	"strings"
 )
 
 func (s *Server) RegisterRoutes() http.Handler {
 	mux := http.NewServeMux()
 
 	mux.HandleFunc("/", s.handleHomepage)
-	mux.HandleFunc("/{logos}", s.handleGetImages)
-	mux.HandleFunc("/{gridRowCol}/{logos}", s.handleGetImagesWithOpts)
+	mux.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("public"))))
+	mux.HandleFunc("/images-list", s.getImagesList)
+	mux.HandleFunc("/l/{logos}", s.handleGetImages)
+	mux.HandleFunc("/l/{gridRowCol}/{logos}", s.handleGetImagesWithOpts)
 	return mux
 }
 
 func (s *Server) handleHomepage(w http.ResponseWriter, r *http.Request) {
+	http.ServeFile(w, r, filepath.Join("public", "index.html"))
 
+}
+
+func (s *Server) getImagesList(w http.ResponseWriter, r *http.Request) {
+	var images []string
+
+	err := filepath.Walk("./images", func(path string, info os.FileInfo, err error) error {
+		if err != nil {
+			return err
+		}
+
+		if !info.IsDir() && info.Name() != "404.png" && (strings.HasSuffix(info.Name(), ".png") || strings.HasSuffix(info.Name(), ".jpg") || strings.HasSuffix(info.Name(), ".jpeg") || strings.HasSuffix(info.Name(), ".gif")) {
+			images = append(images, "/"+strings.Split(info.Name(), ".")[0])
+		}
+
+		return nil
+	})
+
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(images)
 }
 
 func (s *Server) handleGetImages(w http.ResponseWriter, r *http.Request) {
@@ -87,7 +117,7 @@ func (s *Server) handleGetImagesWithOpts(w http.ResponseWriter, r *http.Request)
 
 	}
 
-	image, err := gim.New(grids, cols, rows, gim.OptGridSize(512,512)).Merge()
+	image, err := gim.New(grids, cols, rows, gim.OptGridSize(512, 512)).Merge()
 
 	if err != nil {
 		log.Fatalf("error Creating grid image. Err: %v", err)

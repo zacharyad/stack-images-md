@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/index.css">
+    <script src="/static/index.js" defer></script>
+    <title>Image Grid</title>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="spacer">spacer</div>
+        <div class="logo">
+            <img src="/static/logo.png" alt="App Logo">
+        </div>
+        <div class="nav-links">
+            <a href="https://github.com/zacharyad/stack-images-md" target="_blank">Docs</a>
+        </div>
+    </nav>
+</header>
+<main>
+    <section class="hero">
+        <h1>Stack Images</h1>
+        <p>One Link to Fetch Tech-Stack Logos in a Single GET Request</p>
+        <section id="logoselector" class="logo-selector">
+          <h2>Select Logos</h2>
+          <div id="logo-grid" class="logo-grid"></div>
+          <div class="generated-url">
+              <p>Generated URL:</p>
+              <div id="generated-url"></div>
+              <button id="copy-url-button">Copy URL</button>
+          </div>
+      </section>
+    <section class="features">
+        <h2>Features</h2>
+        <div class="feature-list">
+            <div class="feature">
+              <p class="ml-4">
+                Easily create a
+                <code class="text-sm font-bold text-gray-900">line or grid </code> logos
+              </p></div>
+            <div class="feature">
+              <p class="ml-4">
+                Single request, single image, and singularly built with
+                <code class="text-sm font-bold text-gray-900">Golang</code>
+              </p> </div>
+            <div class="feature">
+              <p class="ml-4"><strong class="text-black">Fuzzy</strong> <s >mitching</s> <strong class="text-black">matching</strong> of technology names helps you read less docs</p></div>
+        </div>
+    </section>
+    <!-- <section class="instructions">
+        <h2>How to Use</h2>
+        <ol>
+            <li>Upload your images.</li>
+            <li>Specify the grid dimensions.</li>
+            <li>Generate and download your image grid.</li>
+        </ol>
+    </section> -->
+   
+</main>
+<footer>
+    <p>&copy; 2024 Stack Images. All rights reserved.</p>
+</footer>
+</body>
+</html>

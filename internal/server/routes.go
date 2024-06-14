@@ -40,7 +40,7 @@ func (s *Server) getImagesList(w http.ResponseWriter, r *http.Request) {
 		}
 
 		if !info.IsDir() && info.Name() != "404.png" && (strings.HasSuffix(info.Name(), ".png") || strings.HasSuffix(info.Name(), ".jpg") || strings.HasSuffix(info.Name(), ".jpeg") || strings.HasSuffix(info.Name(), ".gif")) {
-			images = append(images, "/"+strings.Split(info.Name(), ".")[0])
+			images = append(images, "/l/"+strings.Split(info.Name(), ".")[0])
 		}
 
 		return nil

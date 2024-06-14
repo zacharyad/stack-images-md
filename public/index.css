@@ -1,23 +1,236 @@
+/* CSS Variables for Colors */
+:root {
+  --primary-color: #000; /* Black for simplicity */
+  --secondary-color: #555; /* Dark gray for secondary text */
+  --background-color: #fff; /* White background */
+  --accent-color: #007aff; /* Blue accent color */
+  --light-gray: #f9f9f9; /* Light gray background */
+  --border-color: #e0e0e0; /* Light gray border */
+}
+
 body {
-  font-family: Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   margin: 0;
   padding: 0;
+  background-color: var(--background-color);
+  color: var(--primary-color);
+}
+
+/* Header */
+header {
+  background-color: var(--background-color);
+  border-bottom: 1px solid var(--border-color);
+  padding: 10px 20px;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.spacer {
+  display: none;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 30px;
+  margin-right: 10px;
+}
+
+.nav-links a {
+  color: var(--primary-color);
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.nav-links a:hover {
+  background-color: var(--light-gray);
+}
+
+/* Main Section */
+main {
+  padding: 20px;
+}
+
+.hero {
+  background-color: var(--background-color);
+  color: var(--primary-color);
+  padding: 60px 20px;
+  text-align: center;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: 2.5em;
+}
+
+.hero p {
+  margin: 20px 0;
+  font-size: 1.2em;
+  color: var(--secondary-color);
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 10px 20px;
+  color: var(--background-color);
+  background-color: var(--accent-color);
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 1em;
+  transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+  background-color: darken(var(--accent-color), 10%);
+}
+
+/* Features Section */
+.features {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.features h2 {
+  margin-bottom: 20px;
+  font-size: 2em;
+  color: var(--primary-color);
+}
+
+.feature-list {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  background-color: #f0f0f0;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
-h1 {
-  color: #333;
+.feature {
+  background-color: var(--background-color);
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  padding: 20px;
+  flex-basis: 10%;
+  transition: transform 0.3s;
 }
 
-#image-grid {
+.feature:hover {
+  transform: translateY(-5px);
+}
+
+.feature h3 {
+  margin-top: 0;
+  color: var(--primary-color);
+}
+
+.feature p {
+  font-size: 1em;
+  color: var(--secondary-color);
+}
+
+/* Instructions Section */
+.instructions {
+  padding: 40px 20px;
+  background-color: var(--light-gray);
+  text-align: center;
+}
+
+.instructions h2 {
+  margin-bottom: 20px;
+  font-size: 2em;
+  color: var(--primary-color);
+}
+
+.instructions ol {
+  text-align: left;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.instructions ol li {
+  margin: 10px 0;
+  font-size: 1.2em;
+  color: var(--secondary-color);
+}
+
+/* Logo Selector Section */
+.logo-selector {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.logo-selector h2 {
+  margin-bottom: 20px;
+  font-size: 2em;
+  color: var(--primary-color);
+}
+
+.logo-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   gap: 10px;
-  width: 80%;
+  margin-bottom: 20px;
+}
+
+.logo-item {
+  border: 1px solid var(--border-color);
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: border-color 0.3s, transform 0.3s;
+}
+
+.logo-item.selected {
+  border-color: var(--accent-color);
+  transform: scale(1.05);
+}
+
+.generated-url {
   margin-top: 20px;
+}
+
+#generated-url {
+  word-break: break-all;
+  background-color: var(--light-gray);
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+  max-width: 80%;
+  margin: 0 auto;
+  font-size: 1em;
+  color: var(--primary-color);
+}
+
+#copy-url-button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  color: var(--background-color);
+  background-color: var(--accent-color);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#copy-url-button:hover {
+  background-color: darken(var(--accent-color), 10%);
+}
+
+/* Footer */
+footer {
+  background-color: var(--primary-color);
+  color: var(--background-color);
+  text-align: center;
+  padding: 10px 0;
+  width: 100%;
 }

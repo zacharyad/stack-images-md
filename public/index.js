@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
         logoItem.className = 'logo-item';
 
         const logoImage = document.createElement('img');
-        logoImage.src = `https://www.stackimages.xyz${logo}`;
+        logoImage.src = `https://www.stackimages.xyz/l${logo}`;
         logoImage.alt = logo;
         logoImage.style.width = '100%';
         logoImage.style.height = 'auto';
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
     .catch((error) => console.error('Error fetching images:', error));
 
   function updateUrl() {
-    const url = `https://www.stackimages.xyz/${selectedLogos
+    const url = `https://www.stackimages.xyz/l/${selectedLogos
       .map((item) => item.split('/').pop().split('.')[0])
       .join('-')}`;
     generatedUrlElement.innerText = url;

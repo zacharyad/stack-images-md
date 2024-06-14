@@ -7,6 +7,7 @@ import (
 	"image/png"
 	"log"
 	"net/http"
+	"path/filepath"
 	util "stack-images-md/utils"
 	"strconv"
 )
@@ -15,15 +16,16 @@ func (s *Server) RegisterRoutes() http.Handler {
 	mux := http.NewServeMux()
 
 	mux.HandleFunc("/", s.handleHomepage)
-	mux.HandleFunc("/{logos}", s.handleGetImages)
-	mux.HandleFunc("/{gridRowCol}/{logos}", s.handleGetImagesWithOpts)
+	mux.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("public"))))
+	mux.HandleFunc("/l/{logos}", s.handleGetImages)
+	mux.HandleFunc("/l/{gridRowCol}/{logos}", s.handleGetImagesWithOpts)
 	return mux
 }
 
 func (s *Server) handleHomepage(w http.ResponseWriter, r *http.Request) {
+	http.ServeFile(w, r, filepath.Join("public", "index.html"))
 
 }
-
 func (s *Server) handleGetImages(w http.ResponseWriter, r *http.Request) {
 	optsArr, errGettingOpts := util.WildCardToStringSlice("logos", "-", r)
 
@@ -87,7 +89,7 @@ func (s *Server) handleGetImagesWithOpts(w http.ResponseWriter, r *http.Request)
 
 	}
 
-	image, err := gim.New(grids, cols, rows, gim.OptGridSize(512,512)).Merge()
+	image, err := gim.New(grids, cols, rows, gim.OptGridSize(512, 512)).Merge()
 
 	if err != nil {
 		log.Fatalf("error Creating grid image. Err: %v", err)

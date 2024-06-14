@@ -14,7 +14,7 @@ Stack-Images-MD is a self-hosted solution, coded in Go, that enables users to ea
 - **Grid Formation**: Specify a grid layout by prefixing the stack names with a "row x col" (e.g., 4x2). This creates a customizable grid of logos (usage show below)
 
 ### Future Customizations
-
+- **images for light or dark mode options**: specify that you will have a light/dark or mixed background and images best for those will be selected.
 - **Image Filters**: Options to render logos in sepia or black & white.
 - **Background Customization**: Ability to change the background color of the logo images.
 - **Overlay Additional Images**: For example, a checkbox overlay on each logo to indicate familiarity or usage in a specific project.
@@ -60,15 +60,17 @@ http://stackimages.xyz/linux-golang-javascript
 
 ### To get stack logos in defined grid layout
 
-e.g. six linux logos in a 3 row, 2 column grid
+e.g. six linux logos in a 3 row, 4 column grid
 
 
 ```txt 
-https://stackimages.xyz/2x3/linux-linux-linux-linux-linux-linux
+[https://stackimages.xyz/2x3/linux-linux-linux-linux-linux-linux](https://www.stackimages.xyz/3x4/node-dart-d3-django-sequelize-node-deno-css-react-ember-elm-grunt)
 
 ```  
 #### Grid Output:
-![six linux logos in a 2 by 3 grid](https://stackimages.xyz/3x2/linux-linux-linux-linux-linux-linux)
+![stack logos in a 3 x 4 grid](https://www.stackimages.xyz/3x4/node-dart-d3-django-sequelize-node-deno-css-react-ember-elm-grunt)
+
+
 
 ## Conclusion
 

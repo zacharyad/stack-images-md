@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
         logoItem.className = 'logo-item';
 
         const logoImage = document.createElement('img');
-        logoImage.src = `https://www.stackimages.xyz/l${logo}`;
+        logoImage.src = `https://www.stackimages.xyz/l/${logo}`;
         logoImage.alt = logo;
         logoImage.style.width = '100%';
         logoImage.style.height = 'auto';

@@ -227,7 +227,7 @@ main {
 }
 
 #copy-url-button:hover {
-  background-color: darken(var(--accent-color), 10%);
+  background-color: darken(var(--accent-color), 90%);
 }
 
 /* Footer */

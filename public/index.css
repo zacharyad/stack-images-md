@@ -33,6 +33,10 @@ nav {
   display: none;
 }
 
+#heroimage {
+  width: 300px;
+}
+
 .logo {
   display: flex;
   align-items: center;

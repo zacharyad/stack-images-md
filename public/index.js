@@ -56,6 +56,30 @@ document.addEventListener('DOMContentLoaded', function () {
           }
         });
 
+        logoItem.addEventListener('touch', () => {
+          if (logoItem.classList.contains('selected')) {
+            logoItem.classList.remove('selected');
+            selectedLogos = selectedLogos.filter((item) => item !== logo);
+            orderCount.style.opacity = 0;
+            countSelected--;
+            reorderAllFlags(selectedLogos, logoItem.countFlag);
+          } else {
+            logoItem.classList.add('selected');
+            selectedLogos.push(logo);
+            orderCount.style.opacity = 100;
+            ++countSelected;
+            logoItem.countFlag = countSelected;
+            orderCount.innerText = countSelected;
+          }
+
+          updateUrl();
+
+          if (generatedUrlElement.value.length === 30) {
+            generatedUrlElement.value = '';
+            copyUrlButton.disabled = true;
+          }
+        });
+
         logoGrid.appendChild(logoItem);
       });
     })

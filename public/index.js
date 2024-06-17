@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   copyUrlButton.addEventListener('click', () => {
-    const url = generatedUrlElement.innerText;
+    const url = generatedUrlElement.value;
 
     navigator.clipboard
       .writeText(url)

@@ -202,12 +202,17 @@ main {
 .order-count-flag {
   width: 30px;
   height: 30px;
-  background-color: #007aff;
+  background-color: #007aff70;
+  border-radius: 10px; 
+  padding: auto;
+  display: flex; 
+  justify-content: center;
+  align-items: center;
   border: 1px solid black;
   position: relative;
-  top: 5px;
-  right: 5px;
-  z-index: 10;
+  top: 2px;
+  right: 2px;
+  z-index: 0;
 }
 
 .generated-url {

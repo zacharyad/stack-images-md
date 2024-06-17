@@ -29,7 +29,15 @@ document.addEventListener('DOMContentLoaded', function () {
             logoItem.classList.add('selected');
             selectedLogos.push(logo);
           }
+
           updateUrl();
+
+          console.log(generatedUrlElement.value.length);
+
+          if (generatedUrlElement.value.length === 30) {
+            generatedUrlElement.value = '';
+            copyUrlButton.disabled = true;
+          }
         });
 
         logoGrid.appendChild(logoItem);
@@ -38,18 +46,26 @@ document.addEventListener('DOMContentLoaded', function () {
     .catch((error) => console.error('Error fetching images:', error));
 
   function updateUrl() {
+    if (copyUrlButton.innerText === 'Copied') {
+      copyUrlButton.innerText = 'Copy URL';
+      copyUrlButton.style.backgroundColor = '#007aff';
+    }
+    copyUrlButton.disabled = false;
     const url = `https://www.stackimages.xyz/l/${selectedLogos
       .map((item) => item.split('/').pop().split('.')[0])
       .join('-')}`;
-    generatedUrlElement.innerText = url;
+
+    generatedUrlElement.value = url;
   }
 
   copyUrlButton.addEventListener('click', () => {
-    const url = generatedUrlElement.innerText;
+    const url = generatedUrlElement.value;
+
     navigator.clipboard
       .writeText(url)
       .then(() => {
-        alert('URL copied to clipboard');
+        copyUrlButton.innerText = 'Copied';
+        copyUrlButton.style.backgroundColor = '#49D26D';
       })
       .catch((err) => {
         console.error('Failed to copy URL: ', err);

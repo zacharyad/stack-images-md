@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const copyUrlButton = document.getElementById('copy-url-button');
 
   let selectedLogos = [];
+  let countSelected = 0;
 
   // Fetch the list of images from the server
   fetch('/images-list')
@@ -11,7 +12,17 @@ document.addEventListener('DOMContentLoaded', function () {
     .then((logos) => {
       logos.forEach((logo) => {
         const logoItem = document.createElement('div');
+        const orderCount = document.createElement('div');
+
         logoItem.className = 'logo-item';
+        logoItem.countFlag = 0;
+        logoItem.logoName = logo;
+        logoItem.classList.add('logoimage');
+
+        orderCount.className = 'order-count-flag';
+        orderCount.style.opacity = 0;
+
+        logoItem.appendChild(orderCount);
 
         const logoImage = document.createElement('img');
         logoImage.src = `https://www.stackimages.xyz/l/${logo}`;
@@ -25,14 +36,19 @@ document.addEventListener('DOMContentLoaded', function () {
           if (logoItem.classList.contains('selected')) {
             logoItem.classList.remove('selected');
             selectedLogos = selectedLogos.filter((item) => item !== logo);
+            orderCount.style.opacity = 0;
+            countSelected--;
+            reorderAllFlags(selectedLogos, logoItem.countFlag);
           } else {
             logoItem.classList.add('selected');
             selectedLogos.push(logo);
+            orderCount.style.opacity = 100;
+            ++countSelected;
+            logoItem.countFlag = countSelected;
+            orderCount.innerText = countSelected;
           }
 
           updateUrl();
-
-          console.log(generatedUrlElement.value.length);
 
           if (generatedUrlElement.value.length === 30) {
             generatedUrlElement.value = '';
@@ -72,3 +88,29 @@ document.addEventListener('DOMContentLoaded', function () {
       });
   });
 });
+
+function reorderAllFlags(selectedLogos, numberDeleted) {
+  console.log('numberDeleted: ', numberDeleted);
+
+  let allLogos = [...document.querySelectorAll('.logoimage')]
+    .filter((elem) => {
+      return selectedLogos.includes(elem.logoName);
+    })
+    .map((elem) => {
+      return {
+        parent: elem,
+        flag: elem.children[0],
+        prevCount: elem.countFlag - 1,
+      };
+    });
+
+  countSelected = allLogos.length - 1;
+
+  allLogos.forEach((elem) => {
+    if (elem.prevCount >= numberDeleted) {
+      elem.flag.innerText = elem.prevCount;
+      elem.flag.countFlag = elem.prevCount;
+      elem.parent.countFlag = elem.prevCount;
+    }
+  });
+}

@@ -199,6 +199,17 @@ main {
   transform: scale(1.05);
 }
 
+.order-count-flag {
+  width: 30px;
+  height: 30px;
+  background-color: #007aff;
+  border: 1px solid black;
+  position: relative;
+  top: 5px;
+  right: 5px;
+  z-index: 10;
+}
+
 .generated-url {
   padding-top: 20px;
   display: flex;

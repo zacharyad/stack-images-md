@@ -172,6 +172,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     clearUrlButton.classList.toggle('fade');
     clearUrlButton.style.opacity = 0;
+    copyUrlButton.disabled = true;
   }
 
   function resetGlobalVars() {

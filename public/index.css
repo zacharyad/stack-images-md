@@ -168,6 +168,31 @@ main {
   color: var(--secondary-color);
 }
 
+/* Instructions Section */
+.howtohelp {
+  padding: 40px 20px;
+  background-color: var(--light-gray);
+  text-align: center;
+}
+
+.howtohelp h2 {
+  margin-bottom: 20px;
+  font-size: 2em;
+  color: var(--primary-color);
+}
+
+.howtohelp ol {
+  text-align: left;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.howtohelp ol li {
+  margin: 10px 0;
+  font-size: 1.2em;
+  color: var(--secondary-color);
+}
+
 /* Logo Selector Section */
 .logo-selector {
   padding: 40px 20px;

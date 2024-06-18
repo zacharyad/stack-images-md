@@ -34,14 +34,14 @@ To integrate Stack-Images-MD into your markdown documentation or access it via a
 For markdown
 
 ```markdown
-![Alt image text for tech stack logos](http://stackimages.xyz/linux-golang-javascript)
+![Alt image text for tech stack logos](http://stackimages.xyz/l/react-javascript-node)
 
 ```
 
 Browser
 
 ```markdown
-http://stackimages.xyz/linux-golang-javascript
+http://stackimages.xyz/l/react-javascript-node
 
 ```
 
@@ -51,12 +51,12 @@ http://stackimages.xyz/linux-golang-javascript
 
 <em>e.g. below linux, golang, and javascipt logo in a row</em>
 ```txt
-http://stackimages.xyz/linux-golang-javascript
+http://stackimages.xyz/l/react-javascript-node
 
 ```
 
 #### Single Line Output:
-![Alt image text for tech stack logos](https://stackimages.xyz/golang-linux-javascript)
+![Alt image text for tech stack logos](https://stackimages.xyz/l/react-javascript-node)
 
 ### To get stack logos in defined grid layout
 
@@ -64,14 +64,21 @@ e.g. six linux logos in a 3 row, 4 column grid
 
 
 ```txt 
-[https://stackimages.xyz/2x3/linux-linux-linux-linux-linux-linux](https://www.stackimages.xyz/3x4/node-dart-d3-django-sequelize-node-deno-css-react-ember-elm-grunt)
+[stack logos in a 3 by 5 4 grid](https://www.stackimages.xyz/l/3x4/node-dart-d3-django-sequelize-node-deno-css-react-ember-elm-grunt)
 
 ```  
 #### Grid Output:
-![stack logos in a 3 x 4 grid](https://www.stackimages.xyz/3x4/node-dart-d3-django-sequelize-node-deno-css-react-ember-elm-grunt)
+![stack logos in a 3 x 4 grid](https://www.stackimages.xyz/l/3x4/node-dart-d3-django-sequelize-node-deno-css-react-ember-elm-grunt)
 
+#### How to Help
+##### Contribute images of stack logos by:
 
-
-## Conclusion
+- Create logo image that is a png file, clear background, 300x300, and named with the stack technologies name (no hyphens, spaces, or capitol letters as this is what the applicaton draws from when selecting inside URL).
+- Fork the repo, add the image(s), and create a pull request.
+- Wait for review. Once approved all I have to do is redeploy and your new logo will be available to all.
+  
+##
+### Conclusion
+##
 
 Stack-Images-MD provides a seamless way to incorporate a line or grid of tech-stack logos into your markdown documentation or web pages. Show off any projects tech stack logos with ease and professionalism using Stack-Images-MD.

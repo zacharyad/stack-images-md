@@ -274,6 +274,11 @@ main {
   transition: opacity 1s;
 }
 
+#doubleclickmsg {
+  margin-top: 5px;
+  color: gray;
+}
+
 #copy-url-button:hover {
   background-color: darken(var(--accent-color), 10%);
   -webkit-box-shadow:inset 0px 0px 0px 2px black;

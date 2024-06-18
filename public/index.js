@@ -112,10 +112,15 @@ document.addEventListener('DOMContentLoaded', function () {
   copyUrlButton.addEventListener('click', () => {
     const url = generatedUrlElement.value;
 
+    if (copyUrlButton.innerText === 'Copied! Click to open in new tab') {
+      window.open(url, '_blank').focus();
+      return;
+    }
+
     navigator.clipboard
       .writeText(url)
       .then(() => {
-        copyUrlButton.innerText = 'Copied';
+        copyUrlButton.innerText = 'Copied! Click to open in new tab';
         copyUrlButton.style.backgroundColor = '#49D26D';
       })
       .catch((err) => {
@@ -185,7 +190,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function updateCopyAndClearBtn() {
-    if (copyUrlButton.innerText === 'Copied') {
+    if (copyUrlButton.innerText === 'Copied! Click to open in new tab') {
       copyUrlButton.innerText = 'Copy URL';
       copyUrlButton.style.backgroundColor = '#007aff';
     }

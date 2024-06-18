@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
   let selectedLogos = [];
   let countSelected = 0;
-
+  // grab elements
   const logoGrid = document.getElementById('logo-grid');
   const generatedUrlElement = document.getElementById('generated-url');
   const copyUrlButton = document.getElementById('copy-url-button');
@@ -14,23 +14,23 @@ document.addEventListener('DOMContentLoaded', function () {
       logos.forEach((logo) => {
         const logoItem = document.createElement('div');
         const orderCount = document.createElement('div');
-
+        const logoImage = document.createElement('img');
+        // logo item
         logoItem.className = 'logo-item';
         logoItem.countFlag = 0;
         logoItem.logoName = logo;
         logoItem.classList.add('logoimage');
-
+        // order count flag
         orderCount.className = 'order-count-flag';
         orderCount.style.opacity = 0;
-
+        // appending order count flag inside logoItem
         logoItem.appendChild(orderCount);
-
-        const logoImage = document.createElement('img');
+        // logo image
         logoImage.src = `https://www.stackimages.xyz/l/${logo}`;
         logoImage.alt = logo;
         logoImage.style.width = '100%';
         logoImage.style.height = 'auto';
-
+        // appending logo image inside logo item
         logoItem.appendChild(logoImage);
 
         logoItem.addEventListener('click', () => {
@@ -79,12 +79,6 @@ document.addEventListener('DOMContentLoaded', function () {
           }
 
           updateUrl();
-
-          if (generatedUrlElement.value.length === 30) {
-            generatedUrlElement.value = '';
-            copyUrlButton.disabled = true;
-            clearUrlButton.disabled = true;
-          }
         });
 
         logoGrid.appendChild(logoItem);
@@ -93,27 +87,22 @@ document.addEventListener('DOMContentLoaded', function () {
     .catch((error) => console.error('Error fetching images:', error));
 
   function updateUrl() {
-    if (copyUrlButton.innerText === 'Copied') {
-      copyUrlButton.innerText = 'Copy URL';
-      copyUrlButton.style.backgroundColor = '#007aff';
-    }
-    if (clearUrlButton.innerText === 'Cleared') {
-      clearUrlButton.innerText = 'Clear Selections';
-      clearUrlButton.style.backgroundColor = '#ff948b';
-    }
+    updateCopyAndClearBtn();
+    generatedUrlElement.value = urlBasedOnStateOfSelected();
+  }
 
-    copyUrlButton.disabled = false;
-    clearUrlButton.disabled = false;
-
+  function urlBasedOnStateOfSelected() {
+    if (generatedUrlElement.value.length === 30) {
+      return '';
+    }
     const url = `https://www.stackimages.xyz/l/${selectedLogos
       .map((item) => item.split('/').pop().split('.')[0])
       .join('-')}`;
 
-    generatedUrlElement.value = url;
+    return url;
   }
 
   // eventListerns
-
   clearUrlButton.addEventListener('click', () => {
     generatedUrlElement.value = '';
 
@@ -134,9 +123,8 @@ document.addEventListener('DOMContentLoaded', function () {
       });
   });
 
+  // Helper Funcs
   function reorderAllFlags(numberDeleted) {
-    console.log('numberDeleted: ', numberDeleted);
-
     let allLogos = [...document.querySelectorAll('.logoimage')]
       .filter((elem) => {
         return selectedLogos.includes(elem.logoName);
@@ -169,10 +157,7 @@ document.addEventListener('DOMContentLoaded', function () {
       });
 
     resetGlobalVars();
-
-    clearUrlButton.classList.toggle('fade');
-    clearUrlButton.style.opacity = 0;
-    copyUrlButton.disabled = true;
+    clearButtonHandler();
   }
 
   function resetGlobalVars() {
@@ -188,6 +173,29 @@ document.addEventListener('DOMContentLoaded', function () {
     flagElem.style.opacity = 0;
     generatedUrlElement.disabled = true;
     clearUrlButton.innerText = 'Cleared';
+    copyUrlButton.innerText = 'Copy URL';
+    copyUrlButton.style.backgroundColor = '#007aff';
     elem.countFlag = 0;
+  }
+
+  function clearButtonHandler() {
+    clearUrlButton.classList.toggle('fade');
+    clearUrlButton.style.opacity = 0;
+    copyUrlButton.disabled = true;
+  }
+
+  function updateCopyAndClearBtn() {
+    if (copyUrlButton.innerText === 'Copied') {
+      copyUrlButton.innerText = 'Copy URL';
+      copyUrlButton.style.backgroundColor = '#007aff';
+    }
+
+    if (clearUrlButton.innerText === 'Cleared') {
+      clearUrlButton.innerText = 'Clear Selections';
+      clearUrlButton.style.backgroundColor = '#ff948b';
+    }
+
+    copyUrlButton.disabled = false;
+    clearUrlButton.disabled = false;
   }
 });

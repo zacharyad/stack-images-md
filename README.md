@@ -49,7 +49,7 @@ http://stackimages.xyz/l/react-javascript-node
 
 ### To get a single line of stack logos
 
-<em>e.g. below linux, golang, and javascipt logo in a row</em>
+<em>e.g. below react, javascript, node logo in a row</em>
 ```txt
 http://stackimages.xyz/l/react-javascript-node
 
@@ -60,15 +60,15 @@ http://stackimages.xyz/l/react-javascript-node
 
 ### To get stack logos in defined grid layout
 
-e.g. six linux logos in a 3 row, 4 column grid
+e.g. 12 logos in a 3 row, 4 column grid
 
 
 ```txt 
-[stack logos in a 3 by 5 4 grid](https://www.stackimages.xyz/l/3x4/node-dart-d3-django-sequelize-node-deno-css-react-ember-elm-grunt)
+[12 logos in a 3 row, 4 column grid](https://www.stackimages.xyz/l/3x4/node-dart-d3-django-sequelize-node-deno-css-react-ember-elm-grunt)
 
 ```  
 #### Grid Output:
-![stack logos in a 3 x 4 grid](https://www.stackimages.xyz/l/3x4/node-dart-d3-django-sequelize-node-deno-css-react-ember-elm-grunt)
+![12 logos in a 3 row, 4 column grid](https://www.stackimages.xyz/l/3x4/node-dart-d3-django-sequelize-node-deno-css-react-ember-elm-grunt)
 
 #### How to Help
 ##### Contribute images of stack logos by:

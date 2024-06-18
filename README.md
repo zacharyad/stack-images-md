@@ -1,5 +1,5 @@
 # Project stack-images-md
-( !!! work in progress !!! )
+( !!! work in progress getting more logos and some other features !!! )
 
 One Link to Fetch Tech-Stack Logos in a Single GET Request
 

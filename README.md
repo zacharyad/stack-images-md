@@ -18,7 +18,7 @@ Stack-Images-MD is a self-hosted solution, coded in Go, that enables users to ea
 - **Image Filters**: Options to render logos in sepia or black & white.
 - **Background Customization**: Ability to change the background color of the logo images.
 - **Overlay Additional Images**: For example, a checkbox overlay on each logo to indicate familiarity or usage in a specific project.
-- - **Caching and Stack names**: Less server load with caching and ability to type a common tech stack to get a prebuild image of all logos of that give tech stack
+- **Caching and Stack names**: Less server load with caching and ability to type a common tech stack to get a prebuild image of all logos of that give tech stack
 
 ## Self-Hosting and Security
 

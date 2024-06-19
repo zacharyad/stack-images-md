@@ -3,16 +3,13 @@ package server
 import (
 	"bytes"
 	"encoding/json"
-	"fmt"
 	gim "github.com/ozankasikci/go-image-merge"
 	"image/png"
 	"log"
 	"net/http"
-	"os"
 	"path/filepath"
 	util "stack-images-md/utils"
 	"strconv"
-	"strings"
 )
 
 func (s *Server) RegisterRoutes() http.Handler {
@@ -80,13 +77,12 @@ func (s *Server) handleGetImagesWithOpts(w http.ResponseWriter, r *http.Request)
 	gridRowCol, errRowCol := util.WildCardToStringSlice(r.PathValue("gridRowCol"), "x")
 
 	if errRowCol != nil {
-		fmt.Println("issue in errRowCol")
+
 		w.Write([]byte("Please use proper size options. e.g. /3x2/ for a 3 row, 2 column grid. Any whitespace is due to not enough stack images to fit the grid size specified."))
 		return
 	}
 
 	if errOpts != nil {
-		fmt.Println("issue in errOpts")
 		w.Write([]byte("Issue getting logos. Please make sure your url matches the required syntax."))
 		return
 	}
@@ -105,8 +101,6 @@ func (s *Server) handleGetImagesWithOpts(w http.ResponseWriter, r *http.Request)
 		log.Printf("Issue creating grids slice. Err: %v", err)
 
 	}
-
-	fmt.Println("ckech this: ", grids, cols, rows)
 
 	image, err := gim.New(grids, cols, rows, gim.OptGridSize(512, 512)).Merge()
 

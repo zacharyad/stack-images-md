@@ -3,11 +3,10 @@ package utils
 import (
 	"errors"
 	"fmt"
-	"os"
-	"strings"
-
 	"github.com/lithammer/fuzzysearch/fuzzy"
 	gim "github.com/ozankasikci/go-image-merge"
+	"os"
+	"strings"
 )
 
 func WildCardToStringSlice(wildCard string, delim string) ([]string, error) {

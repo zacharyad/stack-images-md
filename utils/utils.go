@@ -2,7 +2,6 @@ package utils
 
 import (
 	"errors"
-	"fmt"
 	"github.com/lithammer/fuzzysearch/fuzzy"
 	gim "github.com/ozankasikci/go-image-merge"
 	"os"
@@ -23,7 +22,7 @@ var logonames []string
 
 func GetDirNames(path string) ([]string, error) {
 	if len(logonames) == 0 {
-		fmt.Println("expensive")
+
 		filename, err := os.ReadDir(path)
 
 		if err != nil {
@@ -37,7 +36,6 @@ func GetDirNames(path string) ([]string, error) {
 		return logonames, nil
 	}
 
-	fmt.Println("cheap")
 	return logonames, nil
 }
 

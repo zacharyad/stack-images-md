@@ -2,7 +2,7 @@ package utils
 
 import (
 	"errors"
-	"net/http"
+	"fmt"
 	"os"
 	"strings"
 
@@ -10,28 +10,44 @@ import (
 	gim "github.com/ozankasikci/go-image-merge"
 )
 
-func WildCardToStringSlice(wildCard string, delim string, r *http.Request) ([]string, error) {
-	arr := strings.Split(r.PathValue(wildCard), delim)
+func WildCardToStringSlice(wildCard string, delim string) ([]string, error) {
+	arr := strings.Split(wildCard, delim)
 
-	if len(arr) == 1 && wildCard == "x" {
+	if len(arr) == 1 && delim == "x" {
 		return nil, errors.New("wildcard slice is empty and/or issue with syntax of url")
 	}
 
 	return arr, nil
 }
 
-func CreateGrid(optionsArr []string) ([]*gim.Grid, error) {
+var logonames []string
+
+func GetDirNames(path string) ([]string, error) {
+	if len(logonames) == 0 {
+		fmt.Println("expensive")
+		filename, err := os.ReadDir(path)
+
+		if err != nil {
+			return nil, err
+		}
+
+		for _, e := range filename {
+			logonames = append(logonames, strings.Split(e.Name(), ".")[0])
+		}
+
+		return logonames, nil
+	}
+
+	fmt.Println("cheap")
+	return logonames, nil
+}
+
+func CreateGrid(optionsArr []string, filetype string) ([]*gim.Grid, error) {
 	pathStart := "./images/"
-	filenames, err := os.ReadDir("./images")
+	filenames, err := GetDirNames("./images/")
 
 	if err != nil {
 		return nil, err
-	}
-
-	words := []string{}
-
-	for _, word := range filenames {
-		words = append(words, word.Name())
 	}
 
 	grids := []*gim.Grid{}
@@ -41,13 +57,18 @@ func CreateGrid(optionsArr []string) ([]*gim.Grid, error) {
 			continue
 		}
 
-		stackLogo := fuzzy.Find(optionString, words)
+		if optionString == "js" {
+			optionString = "javascript"
+		}
+		stackLogo := fuzzy.Find(optionString, filenames)[0]
+
 		newI := gim.Grid{}
 
 		if len(stackLogo) == 0 {
 			newI.ImageFilePath = pathStart + "404.png"
 		} else {
-			newI.ImageFilePath = pathStart + stackLogo[0]
+
+			newI.ImageFilePath = pathStart + stackLogo + filetype
 		}
 
 		grids = append(grids, &newI)

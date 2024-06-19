@@ -32,36 +32,25 @@ func (s *Server) handleHomepage(w http.ResponseWriter, r *http.Request) {
 }
 
 func (s *Server) getImagesList(w http.ResponseWriter, r *http.Request) {
-	var images []string
-
-	err := filepath.Walk("./images", func(path string, info os.FileInfo, err error) error {
-		if err != nil {
-			return err
-		}
-
-		if !info.IsDir() && info.Name() != "404.png" && (strings.HasSuffix(info.Name(), ".png") || strings.HasSuffix(info.Name(), ".jpg") || strings.HasSuffix(info.Name(), ".jpeg") || strings.HasSuffix(info.Name(), ".gif")) {
-			images = append(images, strings.Split(info.Name(), ".")[0])
-		}
-
-		return nil
-	})
+	images, err := util.GetDirNames("./images")
 
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		log.Println("Could not get all dir names")
 		return
 	}
+
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(images)
 }
 
 func (s *Server) handleGetImages(w http.ResponseWriter, r *http.Request) {
-	optsArr, errGettingOpts := util.WildCardToStringSlice("logos", "-", r)
+	optsArr, errGettingOpts := util.WildCardToStringSlice(r.PathValue("logos"), "-")
 
 	if errGettingOpts != nil {
 		return
 	}
 
-	grids, err := util.CreateGrid(optsArr)
+	grids, err := util.CreateGrid(optsArr, ".png")
 
 	if err != nil {
 		log.Fatalf("Issue creating grids slice. Err: %v", err)
@@ -87,8 +76,8 @@ func (s *Server) handleGetImages(w http.ResponseWriter, r *http.Request) {
 }
 
 func (s *Server) handleGetImagesWithOpts(w http.ResponseWriter, r *http.Request) {
-	optsArr, errOpts := util.WildCardToStringSlice("logos", "-", r)
-	gridRowCol, errRowCol := util.WildCardToStringSlice("gridRowCol", "x", r)
+	optsArr, errOpts := util.WildCardToStringSlice(r.PathValue("logos"), "-")
+	gridRowCol, errRowCol := util.WildCardToStringSlice(r.PathValue("gridRowCol"), "x")
 
 	if errRowCol != nil {
 		fmt.Println("issue in errRowCol")
@@ -110,17 +99,19 @@ func (s *Server) handleGetImagesWithOpts(w http.ResponseWriter, r *http.Request)
 		return
 	}
 
-	grids, err := util.CreateGrid(optsArr)
+	grids, err := util.CreateGrid(optsArr, ".png")
 
 	if err != nil {
 		log.Printf("Issue creating grids slice. Err: %v", err)
 
 	}
 
+	fmt.Println("ckech this: ", grids, cols, rows)
+
 	image, err := gim.New(grids, cols, rows, gim.OptGridSize(512, 512)).Merge()
 
 	if err != nil {
-		log.Fatalf("error Creating grid image. Err: %v", err)
+		log.Fatalf("ERRROR Creating grid image. Err: %v", err)
 	}
 
 	buf := new(bytes.Buffer)

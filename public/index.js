@@ -176,7 +176,7 @@ document.addEventListener('DOMContentLoaded', function () {
     elem.classList.remove('selected');
     flagElem.innerText = 0;
     flagElem.style.opacity = 0;
-    generatedUrlElement.disabled = true;
+    // generatedUrlElement.disabled = true;
     clearUrlButton.innerText = 'Cleared';
     copyUrlButton.innerText = 'Copy URL';
     copyUrlButton.style.backgroundColor = '#007aff';

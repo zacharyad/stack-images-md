@@ -42,7 +42,6 @@ func (s *Server) getImagesList(w http.ResponseWriter, r *http.Request) {
 
 func (s *Server) handleGetImages(w http.ResponseWriter, r *http.Request) {
 	optsArr, errGettingOpts := util.WildCardToStringSlice(r.PathValue("logos"), "-")
-
 	if errGettingOpts != nil {
 		return
 	}
@@ -50,13 +49,13 @@ func (s *Server) handleGetImages(w http.ResponseWriter, r *http.Request) {
 	grids, err := util.CreateGrid(optsArr, ".png")
 
 	if err != nil {
-		log.Fatalf("Issue creating grids slice. Err: %v", err)
+		log.Printf("Issue creating grids slice. Err: %v", err)
 	}
 
 	rgba, err := gim.New(grids, len(grids), 1).Merge()
 
 	if err != nil {
-		log.Fatalf("error Creating grid image. Err: %v", err)
+		log.Printf("error Creating grid image. Err: %v", err)
 	}
 
 	buf := new(bytes.Buffer)
@@ -66,6 +65,7 @@ func (s *Server) handleGetImages(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.Header().Set("Content-Type", "image/png")
+	w.Header().Set("Cache-Control", "max-age=120")
 
 	if _, err := w.Write(buf.Bytes()); err != nil {
 		log.Println("unable to write image.")
@@ -105,7 +105,7 @@ func (s *Server) handleGetImagesWithOpts(w http.ResponseWriter, r *http.Request)
 	image, err := gim.New(grids, cols, rows, gim.OptGridSize(512, 512)).Merge()
 
 	if err != nil {
-		log.Fatalf("ERRROR Creating grid image. Err: %v", err)
+		log.Printf("ERROR Creating grid image. Err: %v", err)
 	}
 
 	buf := new(bytes.Buffer)

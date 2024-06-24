@@ -22,6 +22,9 @@ tmp/
 .vscode
 .idea
 
+# local env 
+.DS_Store
+
 # .env file
 .env
 

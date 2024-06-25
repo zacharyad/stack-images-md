@@ -65,7 +65,7 @@ func (s *Server) handleGetImages(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.Header().Set("Content-Type", "image/png")
-	w.Header().Set("Cache-Control", "max-age=120")
+	w.Header().Set("Cache-Control", "max-age=3600")
 
 	if _, err := w.Write(buf.Bytes()); err != nil {
 		log.Println("unable to write image.")

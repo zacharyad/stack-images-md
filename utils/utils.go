@@ -2,10 +2,11 @@ package utils
 
 import (
 	"errors"
-	"github.com/lithammer/fuzzysearch/fuzzy"
-	gim "github.com/ozankasikci/go-image-merge"
 	"os"
 	"strings"
+
+	"github.com/lithammer/fuzzysearch/fuzzy"
+	gim "github.com/ozankasikci/go-image-merge"
 )
 
 func WildCardToStringSlice(wildCard string, delim string) ([]string, error) {
@@ -41,7 +42,7 @@ func GetDirNames(path string) ([]string, error) {
 
 func CreateGrid(optionsArr []string, filetype string) ([]*gim.Grid, error) {
 	pathStart := "./images/"
-	filenames, err := GetDirNames("./images/")
+	filenames, err := GetDirNames(pathStart)
 
 	if err != nil {
 		return nil, err
@@ -57,6 +58,7 @@ func CreateGrid(optionsArr []string, filetype string) ([]*gim.Grid, error) {
 		if optionString == "js" {
 			optionString = "javascript"
 		}
+
 		stackLogo := fuzzy.Find(optionString, filenames)[0]
 
 		newI := gim.Grid{}

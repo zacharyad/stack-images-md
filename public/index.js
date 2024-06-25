@@ -27,7 +27,6 @@ document.addEventListener('DOMContentLoaded', function () {
         logoItem.appendChild(orderCount);
         // logo image
         logoImage.src = `https://www.stackimages.xyz/l/${logo}`;
-        logoImage.setAttribute('');
         logoImage.alt = logo;
         logoImage.style.width = '100%';
         logoImage.style.height = 'auto';
